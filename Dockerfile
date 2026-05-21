@@ -1,0 +1,23 @@
+FROM eclipse-temurin:25-jdk AS build
+WORKDIR /app
+
+COPY gradle gradle
+COPY gradlew build.gradle* settings.gradle* ./
+RUN chmod +x gradlew
+RUN ./gradlew -q --no-daemon dependencies
+
+COPY src src
+RUN ./gradlew -q --no-daemon -x test bootJar
+
+FROM eclipse-temurin:25-jre
+WORKDIR /app
+
+RUN useradd --create-home appuser
+USER appuser
+
+COPY --from=build /app/build/libs/*.jar /app/app.jar
+
+ENV PORT=8080
+EXPOSE 8080
+
+CMD ["sh", "-c", "java -Dserver.port=${PORT:-8080} -jar /app/app.jar"]
