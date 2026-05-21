@@ -1,6 +1,6 @@
 spring:
   datasource:
-    url: ${DB_URL} # Must be set — no fallback in prod
+    url: ${DB_URL} 
     username: ${DB_USERNAME}
     password: ${DB_PASSWORD}
     hikari:
@@ -24,10 +24,10 @@ management:
 logging:
   level:
     root: WARN
-    com.yourcompany: INFO
+    com.devofblue: INFO
 
 app:
   jwt:
-    secret: ${JWT_SECRET} # Must come from secrets manager / env — no fallback
+    secret: ${JWT_SECRET}
     expiration-ms: 900000
-    refresh-expiration-ms: 86400000 # Shorter refresh in prod (1 day vs 7)
+    refresh-expiration-ms: 86400000
