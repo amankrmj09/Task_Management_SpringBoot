@@ -6,3 +6,4 @@ Dockerfile
 .dockerignore
 .env
 .env.*
+/.env
