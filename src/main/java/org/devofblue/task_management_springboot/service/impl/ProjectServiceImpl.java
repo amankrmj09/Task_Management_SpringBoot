@@ -212,6 +212,7 @@ public class ProjectServiceImpl implements ProjectService {
         List<ProjectMember> members = projectMemberRepository.findAllByProject(project);
 
         List<ProjectResponse.MemberInfo> memberInfos = members.stream()
+                .filter(m -> m.getUser().getDeletedAt() == null)
                 .map(m -> ProjectResponse.MemberInfo.builder()
                         .userId(m.getUser().getId())
                         .name(m.getUser().getName())

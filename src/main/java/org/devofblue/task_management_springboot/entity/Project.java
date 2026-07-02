@@ -43,6 +43,10 @@ public class Project {
     @Builder.Default
     private List<Task> tasks = new ArrayList<>();
 
+    @OneToMany(mappedBy = "project", cascade = CascadeType.ALL, orphanRemoval = true)
+    @Builder.Default
+    private List<JoinRequest> joinRequests = new ArrayList<>();
+
     @Column(nullable = false, updatable = false)
     private Instant createdAt;
 

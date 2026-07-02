@@ -64,6 +64,7 @@ public class DashboardResponse {
         private String status;
         private String priority;
         private LocalDate dueDate;
+        private String projectName;
     }
 
     @Data

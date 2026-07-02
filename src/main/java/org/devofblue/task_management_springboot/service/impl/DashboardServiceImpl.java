@@ -57,6 +57,7 @@ public class DashboardServiceImpl implements DashboardService {
                         .status(t.getStatus().name())
                         .priority(t.getPriority().name())
                         .dueDate(t.getDueDate())
+                        .projectName(t.getProject() != null ? t.getProject().getName() : null)
                         .build())
                 .toList();
 
@@ -67,6 +68,7 @@ public class DashboardServiceImpl implements DashboardService {
                         .status(t.getStatus().name())
                         .priority(t.getPriority().name())
                         .dueDate(t.getDueDate())
+                        .projectName(t.getProject() != null ? t.getProject().getName() : null)
                         .build())
                 .toList();
 
@@ -153,6 +155,7 @@ public class DashboardServiceImpl implements DashboardService {
                         .status(t.getStatus().name())
                         .priority(t.getPriority().name())
                         .dueDate(t.getDueDate())
+                        .projectName(t.getProject() != null ? t.getProject().getName() : null)
                         .build())
                 .toList();
 
@@ -164,6 +167,7 @@ public class DashboardServiceImpl implements DashboardService {
                         .status(t.getStatus().name())
                         .priority(t.getPriority().name())
                         .dueDate(t.getDueDate())
+                        .projectName(t.getProject() != null ? t.getProject().getName() : null)
                         .build())
                 .toList();
 
