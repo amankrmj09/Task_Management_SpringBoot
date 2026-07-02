@@ -33,6 +33,11 @@ app:
     secret: ${JWT_SECRET}
     expiration-ms: 900000
     refresh-expiration-ms: 86400000
+  admin:
+    seed-enabled: ${ADMIN_SEED_ENABLED}
+    name: ${ADMIN_NAME}
+    email: ${ADMIN_EMAIL}
+    password: ${ADMIN_PASSWORD}
 
 server:
   port: ${PORT:8088}
