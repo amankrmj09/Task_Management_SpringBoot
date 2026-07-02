@@ -26,7 +26,7 @@ logging:
 
 app:
   jwt:
-    secret: ${JWT_SECRET:dev-only-secret-do-not-use-in-production-must-be-256-bits-long}
+    secret: ${JWT_SECRET:932e02323195cd1011338838bcd6008b49baa5bfb930ea29d412c53139c1f915}
   admin:
     seed-enabled: true
     name: ${ADMIN_NAME:Admin}

@@ -1,4 +1,4 @@
-FROM eclipse-temurin:25-jdk AS build
+FROM eclipse-temurin:25-jdk-alpine AS build
 WORKDIR /app
 
 COPY gradle gradle
@@ -9,10 +9,10 @@ RUN ./gradlew -q --no-daemon dependencies
 COPY src src
 RUN ./gradlew -q --no-daemon -x test bootJar
 
-FROM eclipse-temurin:25-jre
+FROM eclipse-temurin:25-jre-alpine
 WORKDIR /app
 
-RUN useradd --create-home appuser
+RUN addgroup -S appgroup && adduser -S appuser -G appgroup
 USER appuser
 
 COPY --from=build /app/build/libs/*.jar /app/app.jar
