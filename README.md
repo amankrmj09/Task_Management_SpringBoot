@@ -87,15 +87,16 @@ Base path: `/api`
 ### Projects (`/api/projects`)
 - `POST /` - Create project (admin only).
 - `GET /` - List projects for current user (pageable).
+- `GET /search` - Search projects (Query: `q`).
 - `GET /{projectId}` - Get project by id.
 - `PUT /{projectId}` - Update project (admin only, body: `name`, `description`, `status`).
-- `POST /{projectId}/members` - Add member (admin only, body: `userId`, `projectRole`).
-- `DELETE /{projectId}/members/{userId}` - Remove member (admin only).
+- `POST /{projectId}/members` - Add member (admin only, body: `email`, `projectRole`).
+- `DELETE /{projectId}/members` - Remove member (admin only, Query: `email`).
 - `DELETE /{projectId}` - Delete project (admin only).
 
 ### Tasks (`/api/projects/{projectId}/tasks`)
 - `POST /` - Create task.
-- `GET /` - List tasks with filters (Query: `status`, `assigneeId`, `priority`, `overdue`, pagination).
+- `GET /` - List tasks with filters (Query: `status`, `assigneeEmail`, `priority`, `overdue`, `unpaginated`, pagination).
 - `GET /{taskId}` - Get task by id.
 - `PUT /{taskId}` - Update task.
 - `PATCH /{taskId}/status` - Update task status.
