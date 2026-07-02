@@ -17,7 +17,7 @@ USER appuser
 
 COPY --from=build /app/build/libs/*.jar /app/app.jar
 
-ENV PORT=8080
-EXPOSE 8080
+ENV PORT=8088
+EXPOSE 8088
 
-CMD ["sh", "-c", "java -Dserver.port=${PORT:-8080} -jar /app/app.jar"]
+CMD ["sh", "-c", "java -Dserver.port=${PORT:-8088} -jar /app/app.jar"]
