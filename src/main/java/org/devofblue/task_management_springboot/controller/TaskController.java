@@ -44,8 +44,10 @@ public class TaskController {
             @RequestParam(required = false) String assigneeEmail,
             @RequestParam(required = false) Priority priority,
             @RequestParam(defaultValue = "false") boolean overdue,
-            @PageableDefault(size = 20) Pageable pageable) {
-        return ResponseEntity.ok(taskService.getTasks(projectId, status, assigneeEmail, priority, overdue, pageable));
+            @RequestParam(defaultValue = "false") boolean unpaginated,
+            @PageableDefault(size = 10) Pageable pageable) {
+        Pageable actualPageable = unpaginated ? Pageable.unpaged() : pageable;
+        return ResponseEntity.ok(taskService.getTasks(projectId, status, assigneeEmail, priority, overdue, actualPageable));
     }
 
     @GetMapping("/{taskId}")

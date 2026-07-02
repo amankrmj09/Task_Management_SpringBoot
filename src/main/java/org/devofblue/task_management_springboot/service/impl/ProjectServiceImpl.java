@@ -80,24 +80,20 @@ public class ProjectServiceImpl implements ProjectService {
     @Override
     @Transactional(readOnly = true)
     public ApiResponse<?> getProjects(UUID userId, Role role, Pageable pageable) {
-        List<Project> projects;
+        org.springframework.data.domain.Page<Project> projectPage;
 
         if (role == Role.ADMIN) {
-            projects = projectRepository.findAll();
+            projectPage = projectRepository.findAll(pageable);
         } else {
             User user = userRepository.findById(userId)
                     .orElseThrow(() -> new ResourceNotFoundException("User", "id", userId));
-            List<ProjectMember> memberships = projectMemberRepository.findAllByUser(user);
-            projects = memberships.stream()
-                    .map(ProjectMember::getProject)
-                    .toList();
+            org.springframework.data.domain.Page<ProjectMember> memberships = projectMemberRepository.findAllByUser(user, pageable);
+            projectPage = memberships.map(ProjectMember::getProject);
         }
 
-        List<ProjectResponse> responses = projects.stream()
-                .map(this::mapToProjectResponse)
-                .toList();
+        org.springframework.data.domain.Page<ProjectResponse> responses = projectPage.map(this::mapToProjectResponse);
 
-        return ApiResponse.success(responses, "Projects retrieved successfully");
+        return ApiResponse.successWithPagination(responses.getContent(), "Projects retrieved successfully", responses);
     }
 
     @Override

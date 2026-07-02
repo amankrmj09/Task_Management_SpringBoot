@@ -85,14 +85,7 @@ public class TaskServiceImpl implements TaskService {
                 .map(t -> mapToTaskResponse(t, false))
                 .toList();
 
-        Map<String, Object> page = new LinkedHashMap<>();
-        page.put("content", content);
-        page.put("page", tasks.getNumber());
-        page.put("size", tasks.getSize());
-        page.put("totalPages", tasks.getTotalPages());
-        page.put("totalElements", tasks.getTotalElements());
-
-        return ApiResponse.success(page, "Tasks retrieved successfully");
+        return ApiResponse.successWithPagination(content, "Tasks retrieved successfully", tasks);
     }
 
     @Override

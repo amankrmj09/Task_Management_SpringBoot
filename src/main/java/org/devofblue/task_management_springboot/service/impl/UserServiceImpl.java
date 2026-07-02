@@ -78,14 +78,7 @@ public class UserServiceImpl implements UserService {
             return map;
         }).toList();
 
-        Map<String, Object> page = new LinkedHashMap<>();
-        page.put("content", content);
-        page.put("page", users.getNumber());
-        page.put("size", users.getSize());
-        page.put("totalPages", users.getTotalPages());
-        page.put("totalElements", users.getTotalElements());
-
-        return ApiResponse.success(page, "Users retrieved successfully");
+        return ApiResponse.successWithPagination(content, "Users retrieved successfully", users);
     }
 
     @Override

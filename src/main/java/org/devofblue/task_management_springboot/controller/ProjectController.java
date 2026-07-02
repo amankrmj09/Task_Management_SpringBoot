@@ -38,7 +38,7 @@ public class ProjectController {
     @GetMapping
     public ResponseEntity<ApiResponse<?>> getProjects(
             @AuthenticationPrincipal UserPrincipal userPrincipal,
-            @PageableDefault(size = 20) Pageable pageable) {
+            @PageableDefault(size = 10) Pageable pageable) {
         return ResponseEntity.ok(projectService.getProjects(
                 userPrincipal.getId(), userPrincipal.getUser().getRole(), pageable));
     }

@@ -18,6 +18,8 @@ public interface ProjectMemberRepository extends JpaRepository<ProjectMember, UU
 
     List<ProjectMember> findAllByProject(Project project);
 
+    org.springframework.data.domain.Page<ProjectMember> findAllByUser(User user, org.springframework.data.domain.Pageable pageable);
+
     List<ProjectMember> findAllByUser(User user);
 
     void deleteByProjectAndUser(Project project, User user);

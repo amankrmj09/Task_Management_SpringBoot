@@ -1,8 +1,8 @@
 spring:
   datasource:
-    url: ${DB_URL}
-    username: ${DB_USERNAME}
-    password: ${DB_PASSWORD}
+    url: jdbc:postgresql://localhost:5432/task_manager
+    username: task_manager_admin
+    password: admin_123123
 
   jpa:
     hibernate:
@@ -25,10 +25,15 @@ logging:
     com.yourcompany: DEBUG
 
 app:
+  cors:
+    allowed-origins: http://localhost:3000,http://localhost:5173
   jwt:
-    secret: ${JWT_SECRET}
+    secret: 932e02323195cd1011338838bcd6008b49baa5bfb930ea29d412c53139c1f915
   admin:
     seed-enabled: true
-    name: ${ADMIN_NAME}
-    email: ${ADMIN_EMAIL}
-    password: ${ADMIN_PASSWORD}
+    name: Admin
+    email: admin@example.com
+    password: AdminPass123!
+
+server:
+  port: 8088
